@@ -116,14 +116,14 @@ class Fecha:
         for _ in range(cantDias):
             if dia + 1 > Fecha.DIAS_X_MES[mes-1]:
                 if mes == 12:
-                    dia = 1
                     mes = 1
-                    anio = anio + 1   
+                    anio += 1   
                 else:    
-                    dia = 1
-                    mes = mes + 1
+                    mes += 1
+                
+                dia = 1
             else:
-                dia = dia+1
+                dia += 1
         
         return Fecha(dia,mes,anio)
     
@@ -134,15 +134,20 @@ class Fecha:
             Fecha: _description_
         """
         # Si nos pasamos de dias del mes, cambiamos mes, y si nos pasamos de mes, sumamos anio
+        
         if self.__dia + 1 > Fecha.DIAS_X_MES[self.__mes-1]:
+            
             if self.__mes == 12:
-                dia = 1
+                
                 mes = 1
                 anio = self.__anio + 1   
             else:    
-                dia = 1
+                
                 mes = self.__mes + 1
                 anio = self.__anio
+            
+            dia = 1
+
         else:
             anio = self.__anio
             mes = self.__mes
@@ -169,6 +174,10 @@ class Fecha:
             return False
         
         return True
+    
+    def esBisiesto(self)->bool:
+        return self.__anio % 4 == 0 and (self.__anio % 100 != 0 or self.__anio % 400 == 0)
+    
 class tester:
     @staticmethod
     def test():
@@ -197,9 +206,9 @@ class tester:
         fecha5 = fecha4.diaSiguiente()
         print("fecha5 siguiente a la fecha4",fecha5)
             
-            
         fecha6 = fecha4.sumaDias(4)    
         print("fecha 6",fecha6)
-            
+        
+                    
 if __name__ == "__main__":
     tester.test()
