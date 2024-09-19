@@ -14,6 +14,9 @@ class Color:
     def __str__(self)->str:
         return f"Color: {self.obtenerNombreColor()} RGB:({self.__rojo},{self.__verde},{self.__azul})"
     
+    def __repr__(self) -> str:
+        return f"Color({self.__rojo},{self.__verde},{self.__azul})"
+    
     # Consultas
     def obtenerRojo(self)->int:
         return self.__rojo
@@ -107,7 +110,7 @@ class Color:
         Returns:
             Color: _description_
         """
-        return Color(self.__rojo,self.__verde,self.__azul)
+        return eval(self.__repr__()) # repr retorna el str para instanciar el objeto, y eval ejecuta el str
     
     # Comandos
     def variar(self,val:int):
@@ -198,7 +201,20 @@ class Color:
         self.__rojo = otroColor.obtenerRojo()
         self.__verde = otroColor.obtenerVerde()
         self.__azul = otroColor.obtenerAzul()
+  
+class ColoresGrupo:
+    def __init__(self,listaColores:list[Color]=None):
+        
+        self.__colores = []
     
+        if listaColores:
+            for color in listaColores:
+                if not isinstance(color,Color):
+                    raise ValueError("Error al ingresar valor")
+                self.__colores.append(color) 
+        
+    def __repr__(self) -> str:
+        return f"ColoresGrupo({self.__colores})"  
     
 class testColores:
     @staticmethod
@@ -230,7 +246,7 @@ class testColores:
             
         clon_color_1 = color_1.clonar()
         if color_1.esIgualQue(clon_color_1):
-            print("el clon de color_1 y color_1 son equivalentes") 
+            print("clon_color_1 y color_1 son equivalentes") 
             
         color_5 = Color(99,64,223) 
         print("Color_5: ",color_5.obtenerRGB())
@@ -244,5 +260,13 @@ class testColores:
         print("Color_5 -> ",color_5)
         print("Color_6 -> ",color_6)  
         
+        print(color_1.__repr__())
+        
+        grupo_colores = ColoresGrupo([color_1,color_2,color_3,color_4,color_5,color_6])
+        print(grupo_colores)
+        
+        
 if __name__ == "__main__":
     testColores.test()
+    
+    
