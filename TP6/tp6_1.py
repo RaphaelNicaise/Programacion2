@@ -2,6 +2,9 @@ from modulo_fecha import Fecha
 
 class Socio:
     def __init__(self,nombre:str,nacimiento:'Fecha'):
+        if not isinstance(nacimiento,Fecha):
+            raise ValueError("Error al ingresar fecha")
+        
         self.__nombre = nombre
         self.__fecha_nacimiento = nacimiento
         self.__fecha_penalizacion = None
@@ -19,11 +22,13 @@ class Socio:
     def establecerFechaNacimiento(self,fecha:'Fecha'):
         if not isinstance(fecha,Fecha):
             raise ValueError("Error al ingresar fecha")
+        
         self.__fecha_nacimiento = fecha
     
     def establecerFechaPenalizacion(self,hastaFecha:'Fecha'):
         if not isinstance(hastaFecha,Fecha):
             raise ValueError("Error al ingresar fecha")
+        
         self.__fecha_penalizacion = hastaFecha
     
     def quitarPenalizacion(self):
@@ -31,6 +36,9 @@ class Socio:
 
     # Consultas
     def estaHabilitado(self,fecha:'Fecha')->bool:
+        if not isinstance(fecha,Fecha):
+            raise ValueError("Error al ingresar fecha")
+        
         return self.__fecha_penalizacion == None or self.__fecha_penalizacion.esAnterior(fecha)
     
     def obtenerNombre(self)->str:
@@ -73,6 +81,9 @@ class Prestamo:
         
         if not socio.estaHabilitado(fechaprestamo):
             raise ValueError("Socio no habilitado")
+        
+        if not isinstance(libro,Libro) or not isinstance(fechaprestamo,Fecha) or not isinstance(cantDias,int) or not isinstance(socio,Socio):
+            raise ValueError("Error al ingresar parametros")
         
         self.__libro = libro
         self.__fecha_prestamo = fechaprestamo
@@ -131,6 +142,9 @@ class Prestamo:
         return self.__fecha_devolucion
     
     def estaAtrasado(self,fecha:'Fecha')->bool:
+        if not isinstance(fecha,Fecha):
+            raise ValueError("Error al ingresar fecha")
+        
         return self.__fecha_devolucion.esAnterior(fecha)
     
     def penalizacion(self)->'Fecha':

@@ -29,6 +29,9 @@ class Borde:
         self.__color = color
     
     def copiarValores(self,bordeACopiar:'Borde'):
+        if not isinstance(bordeACopiar,Borde):
+            raise ValueError("Error al ingresar borde")
+        
         self.__grosor = bordeACopiar.obtenerGrosor()
         self.__color = bordeACopiar.obtenerColor()
         
@@ -43,6 +46,8 @@ class Borde:
         return eval(self.__repr__()) # repr de borde = Borde(grosor,repr de color)
     
     def esIgualQueSuperficial(self,borde:'Borde')->bool:
+        if not isinstance(borde,Borde):
+            raise ValueError("Error al ingresar borde")
         return self.obtenerColor() == borde.obtenerColor() and self.obtenerGrosor() == borde.obtenerGrosor()
     
 class tester:
