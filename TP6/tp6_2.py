@@ -11,6 +11,7 @@ class Borde:
         self.__grosor = grosor
         self.__color = color
         
+        
     def __str__(self):
         return f"Grosor: {self.__grosor} Color: {self.__color.obtenerRGB()}"
     
@@ -48,8 +49,13 @@ class Borde:
     def esIgualQueSuperficial(self,borde:'Borde')->bool:
         if not isinstance(borde,Borde):
             raise ValueError("Error al ingresar borde")
-        return self.obtenerColor() == borde.obtenerColor() and self.obtenerGrosor() == borde.obtenerGrosor()
+        return self.__color == borde.obtenerColor() and self.__grosor == borde.obtenerGrosor()
     
+    def esIgualProfundo(self,borde:'Borde')->bool:
+        if not isinstance(borde,Borde):
+            raise ValueError("Error al ingresar borde")
+        
+        return  borde.obtenerColor().esIgualQue(self.__color)
 class tester:
     @staticmethod
     def test1():
@@ -67,6 +73,7 @@ class tester:
         print("clon_borde_2: ",clon_borde_2)
         
         print(clon_borde_2.esIgualQueSuperficial(borde_2)) # Da falso porque al clonar se crea un nuevo objeto Color, y por mas que sean equivalentes, no son el mismo objeto
-
+        print(clon_borde_2.esIgualProfundo(borde_2)) # Da verdadero porque se compara el contenido de los objetos Color
+        
 if __name__ == "__main__":
     tester.test1()
