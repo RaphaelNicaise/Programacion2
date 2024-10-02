@@ -20,11 +20,11 @@ class Atraccion:
         self.__estaturaMinima = estaturaMinima # en cm 
         self.__turnos = []
             
-    def __str__():
-        pass
+    def __str__(self):
+        return f'Atraccion: {self.__nombre} - {self.__tipo} - {self.__emocion} - {self.__estaturaMinima} - {self.__turnos}'
     
-    def __repr__():
-        pass
+    def __repr__(self):
+        return self.__nombre
 
     # Consultas
     
@@ -81,8 +81,8 @@ class Visitante:
     def __str__(self):
         return f'Visitante: {self.__nombre} - {self.__edad} - {self.__estatura} - {self.__correo}'
     
-    def __repr__():
-        pass
+    def __repr__(self):
+        return self.__nombre
 
     # Consultas
     
@@ -171,24 +171,32 @@ class Entrada:
             
     
 
-class GuiaDeVisitante:
+class Guia:
+    
+    GUIAS = [] # Cuando se cree un objeto guia se va a agregar a esta lista
     
     def __init__(self,nombre:str,turno:str):
-        self.__nombre = nombre
-        if turno in ['Mañana','Tarde','Noche']:
-            self.__turno = turno
+        
+        if turno not in ['Mañana','Tarde','Noche']:
+            raise ValueError("Turno incorrecto")
+        
+        self.__nombre = nombre    
+        self.__turno = turno    
+        Guia.GUIAS.append(self) # Agregamos el objeto guia a la lista de guias
+        
+    def __str__(self):
+        return f'Guia: {self.__nombre} - {self.__turno}'
     
-    def __str__():
-        pass
-    
-    def __repr__():
-        pass
+    def __repr__(self):
+        return f'{self.__nombre}'
 
     # Consultas
     
     def obtenerNombre(self): return self.__nombre
     
     def obtenerTurno(self): return self.__turno
+    
+    def obtenerGuias(self): return Guia.GUIAS
     
     # Comandos
     
@@ -217,10 +225,10 @@ if __name__ == '__main__':
         atraccion3.establecerTurno('Mañana')
         atraccion3.establecerTurno('Tarde')
         
-        guia1 = GuiaDeVisitante('Juan','Mañana')
-        guia2 = GuiaDeVisitante('Pedro','Tarde')
-        guia3 = GuiaDeVisitante('Maria','Tarde')
-        guia4 = GuiaDeVisitante('Ana','Mañana')
+        guia1 = Guia('Juan','Mañana')
+        guia2 = Guia('Pedro','Tarde')
+        guia3 = Guia('Maria','Tarde')
+        guia4 = Guia('Ana','Mañana')
         
         visitante1 = Visitante('Carlos',25,180,'carlos@gmail.com')
         visitante2 = Visitante('Lucia',30,160,'Luci@gmail.com')
@@ -239,8 +247,7 @@ if __name__ == '__main__':
         print(f"Entradas del visitante 1: {visitante1.obtenerEntrada()}") # 1 entrada
         print(f"Visitante que tiene la entrada 2: {entrada2.obtenerVisitante()}") # Visitante 2
        
-       
+        print(Guia.GUIAS) # Devuelve la lista de guias
         
-    
     except ValueError as error:
         print(error)
