@@ -11,7 +11,6 @@ class Borde:
         self.__grosor = grosor
         self.__color = color
         
-        
     def __str__(self):
         return f"Grosor: {self.__grosor} Color: {self.__color.obtenerRGB()}"
     
