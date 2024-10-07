@@ -1,3 +1,5 @@
+import time
+
 class Fecha:
     
     DIAS_X_MES = [31,28,31,30,31,30,31,31,30,31,30,31]
@@ -24,6 +26,8 @@ class Fecha:
     def __str__(self):
         return f"{self.__dia}/{self.__mes}/{self.__anio}"
     
+    def __repr__(self):
+        return f"Fecha({self.__dia},{self.__mes},{self.__anio})"
     # Comandos
     
     def establecerDia(self,dia:int):
@@ -170,7 +174,7 @@ class Fecha:
             return False
         if not self.__mes == otraFecha.obtenerMes():
             return False
-        if not self.__anio == otraFecha.obtenerMes():
+        if not self.__anio == otraFecha.obtenerAnio():
             return False
         
         return True
@@ -178,9 +182,51 @@ class Fecha:
     def esBisiesto(self)->bool:
         return self.__anio % 4 == 0 and (self.__anio % 100 != 0 or self.__anio % 400 == 0)
     
+    def clonarFecha(self)->'Fecha':
+        return eval(self.__repr__())
+    
+    def diasDiferencia(self,otraFecha:'Fecha')->int:
+        """
+        retorna la cantidad de días que hay entre la fecha que recibe el mensaje y otraFecha
+        Args:
+            otraFecha (Fecha): _description_
+        Returns:
+            int: _description_
+        """
+        
+        dias = 0
+        
+        if self.esAnterior(otraFecha):
+            fecha = self.clonarFecha()
+            while not fecha.esIgualQue(otraFecha):
+                fecha = fecha.diaSiguiente()
+                dias += 1
+        elif otraFecha.esAnterior(self):
+            fecha = otraFecha.clonarFecha()
+            while not fecha.esIgualQue(self):
+                fecha = fecha.diaSiguiente()
+                dias += 1
+        else:
+            dias = 0
+            
+        return dias
+    
+    @staticmethod                  
+    def obtenerFechaActual()->'Fecha':
+        """
+        retorna la fecha actual del sistema
+        Returns:
+            Fecha: _description_
+        """
+        tm = time.localtime()
+        dia = tm.tm_mday
+        mes = tm.tm_mon
+        anio = tm.tm_year
+        return Fecha(dia,mes,anio)
+        
 class tester:
     @staticmethod
-    def test():
+    def run():
         try:
             fecha1 = Fecha(31,2,2022) # 31 de Febrero no existe
             print(fecha1)
@@ -209,6 +255,9 @@ class tester:
         fecha6 = fecha4.sumaDias(4)    
         print("fecha 6",fecha6)
         
+        fechita = Fecha(11,11,2022)
+        print(f"{fechita.diasDiferencia(Fecha.obtenerFechaActual())} dias de diferencia entre el {fechita} y el {Fecha.obtenerFechaActual()}")
+         
                     
 if __name__ == "__main__":
-    tester.test()
+    tester.run()
