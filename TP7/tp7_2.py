@@ -12,41 +12,41 @@ class Inmbueble:
         if not isinstance(metrosCuadrados,int): raise ValueError
         if not isinstance(estado,int): raise ValueError
         
-        self.__codigo = codigo
-        self.__domicilio = domicilio
-        self.__propietario = propietario
-        self.__metrosCuadrados = metrosCuadrados
-        self.__estado = estado
+        self._codigo = codigo
+        self._domicilio = domicilio
+        self._propietario = propietario
+        self._metrosCuadrados = metrosCuadrados
+        self._estado = estado
         
     # Comandos
     
     def establecerDomicilio(self,domicilioNuevo:str):
-        self.__domicilio = domicilioNuevo
+        self._domicilio = domicilioNuevo
         
     def establecerPropietario(self,propietarioNuevo:'Propietario'):
         if not isinstance(propietarioNuevo,Propietario): raise ValueError
-        self.__propietario = propietarioNuevo
+        self._propietario = propietarioNuevo
     
     def establecerMetrosCuadrados(self,metrosCuadradosNuevos:int):
         if metrosCuadradosNuevos < 1: raise ValueError
-        self.__metrosCuadrados = metrosCuadradosNuevos
+        self._metrosCuadrados = metrosCuadradosNuevos
         
     def establecerEstado(self,estadoNuevo:int):
         if estadoNuevo < 1: raise ValueError
-        self.__estado = estadoNuevo
+        self._estado = estadoNuevo
         
     
     # Consultas
     
-    def obtenerCodigo(self)->int: return self.__codigo
+    def obtenerCodigo(self)->int: return self._codigo
     
-    def obtenerDomicilio(self)->str: return self.__domicilio
+    def obtenerDomicilio(self)->str: return self._domicilio
     
-    def obtenerPropietario(self)->'Propietario': return self.__propietario
+    def obtenerPropietario(self)->'Propietario': return self._propietario
     
-    def obtenerMetrosCuadrados(self)->int: return self.__metrosCuadrados
+    def obtenerMetrosCuadrados(self)->int: return self._metrosCuadrados
     
-    def obtenerEstado(self)->int: return self.__estado
+    def obtenerEstado(self)->int: return self._estado
      
     def costoAlquiler(self,base: int)->float:
         # No entiendo como sacar el costo

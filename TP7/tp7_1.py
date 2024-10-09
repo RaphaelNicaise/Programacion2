@@ -99,15 +99,19 @@ class PolizaInmuebleEscolar(PolizaInmueble):
     # Comandos
     
     def establecerCantPersonas(self,cantPersonas:int):
+        if not isinstance(cantPersonas,int) or cantPersonas < 0: raise ValueError
         self.__cantPersonas = cantPersonas
         
     def establecerMontoEquipamiento(self,montoEquipamiento:float):
+        if not isinstance(montoEquipamiento,[float,int]) or montoEquipamiento < 0: raise ValueError
         self.__montoEquipamiento = montoEquipamiento
         
     def establecerMontoMobiliario(self,montoMobiliario:float):
+        if not isinstance(montoMobiliario,[float,int]) or montoMobiliario < 0: raise ValueError
         self.__montoMobiliario = montoMobiliario
         
     def establecerMontoPersona(self,montoPersona:float):
+        if not isinstance(montoPersona,[float,int]) or montoPersona < 0: raise ValueError
         self.__montoPersona = montoPersona
     
     # Consultas
@@ -126,7 +130,7 @@ class PolizaInmuebleEscolar(PolizaInmueble):
     
     def costoPoliza(self)->float:
         return super().costoPoliza() + self.__cantPersonas * self.__montoPersona + self.__montoEquipamiento + self.__montoMobiliario 
-        
+        # Costo poliza = costo poliza clase padre (inmueble) + costo por persona + costo equipamiento + costo mobiliario
         
 class Tester:
     @staticmethod
