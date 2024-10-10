@@ -1,10 +1,12 @@
+from abc import ABC,abstractmethod
+
 class Propietario:
     def __init__(self,nombre,telefono,edad):
         self.__nombre = nombre
         self.__telefono = telefono
         self.__edad = edad
         
-class Inmbueble:
+class Inmbueble(ABC):
     def __init__(self,codigo:int,domicilio:str,propietario: 'Propietario',metrosCuadrados:int,estado:int):
         if not isinstance(codigo,int) or codigo < 1: raise ValueError
         if not isinstance(domicilio,str): raise ValueError
@@ -47,13 +49,12 @@ class Inmbueble:
     def obtenerMetrosCuadrados(self)->int: return self._metrosCuadrados
     
     def obtenerEstado(self)->int: return self._estado
-     
-    def costoAlquiler(self,base: int)->float:
-        # No entiendo como sacar el costo
-        pass
     
+    @abstractmethod
+    def costoAlquiler(self,base: int)->float:
+        pass
+    @abstractmethod
     def precioVenta(self,m2:float)->float:
-        # No entiendo
         pass
 class Departamento(Inmbueble):
     def __init__(self,codigo:int,domicilio:str,propietario: 'Propietario',metrosCuadrados:int,estado:int,gastosComunes:float,cochera:bool):
@@ -78,11 +79,11 @@ class Departamento(Inmbueble):
     # Consultas   
     def costoAlquiler(self,base: int)->float:
         # No entiendo como sacar el costo
-        pass
+        return base + self.__gastosComunes * self.obtenerMetrosCuadrados()
     
     def precioVenta(self,m2:float)->float:
         # No entiendo
-        pass
+        return m2 * self.obtenerMetrosCuadrados() * m2
     
 class Quinta(Inmbueble):
     def __init__(self,codigo:int,domicilio:str,propietario: 'Propietario',metrosCuadrados:int,estado:int,metrosParque:int):
@@ -106,7 +107,7 @@ class Quinta(Inmbueble):
     
     def precioVenta(self,m2:float)->float:
         # No entiendo
-        pass   
+        pass
        
 class Tester:
     @staticmethod
