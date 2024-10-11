@@ -1,3 +1,6 @@
+from abc import ABC, abstractmethod
+import random
+
 class Pais:
     
     def __init__(self,codigo:str,nombre:str,cantidadDispositivos:int=3):
@@ -31,7 +34,7 @@ class Pais:
     
     def obtenerCantidadDispositivos(self)->int: return self.__cantidadDispositivos
 
-class Suscripcion:
+class Suscripcion(ABC):
     def __init__(self,nombre:str,email:str,telefono:str,pais:'Pais'):
         
         for var in [nombre,email,telefono]:
@@ -84,11 +87,18 @@ class Suscripcion:
             raise ValueError("No es el duenio de la playlist")
         playlist.eliminarCancion(cancion)
     
+    @abstractmethod
     def agregarDispositivo(self,dispositivo:'Dispositivo'):
-        if not isinstance(dispositivo,Dispositivo):
-            raise ValueError("No es un dispositivo valido")
-        self._dispositivos.append(dispositivo)
-        dispositivo.asignarSuscripcion(self)      
+        pass
+    
+    @abstractmethod
+    def reproducirMusica(self,cancion:'Cancion'):
+        pass
+    
+    @abstractmethod
+    def reproducirPlaylist(self,playlist:'Playlist'):
+        pass
+    
     # Consultas
     
     def obtenerNombre(self)->str: return self._nombre
@@ -98,18 +108,27 @@ class Suscripcion:
     def obtenerDispositivos(self)->list['Dispositivo']: return self._dispositivos
     
 class SuscripcionGratis(Suscripcion):
+    TIEMPO_SIN_PUBLICIDAD = 10
+    
     def __init__(self,nombre:str,email:str,telefono:str,pais:'Pais'):
         super().__init__(nombre,email,telefono,pais)
         self.__tiempoReproducido = 0
-        self.__tiempoSinPublicidad = 0
         
     # Comandos
     
-    def reproducirMusica(self):
-        pass
     
+    def reproducirMusica(self,cancion:'Cancion'):
+        if not isinstance(cancion,Cancion):
+            raise ValueError("No es una cancion valida")
+        if self.TIEMPO_SIN_PUBLICIDAD < self.__tiempoReproducido:
+            self.interruimpirConPublicidad()
+            
+        cancion.reproducir()
+        self.__tiempoReproducido += cancion.obtenerDuracion()
+               
+
     def interruimpirConPublicidad(self):
-        pass
+        print("Reproduciendo publicidad")
     
     def agregarDispositivo(self, dispositivo):
         if not isinstance(dispositivo,Dispositivo):
@@ -117,7 +136,17 @@ class SuscripcionGratis(Suscripcion):
         if len(self._dispositivos) >= 1:
             raise ValueError("No se pueden agregar mas dispositivos")
         self._dispositivos.append(dispositivo)
-        
+    
+    def reproducirPlaylist(self, playlist:'Playlist'):
+        if not isinstance(playlist,Playlist):
+            raise ValueError("No es una playlist valida")
+        if playlist not in self._playlists:
+            raise ValueError("No es el duenio de la playlist")
+        cola = playlist.obtenerCopia()
+        for _ in range(len(playlist.obtenerCanciones())):
+            cancion = random.choice(cola) # Elegimos una cancion al azar
+            self.reproducirMusica(cancion) # Reproducimos la cancion
+            cola.remove(cancion) # Eliminamos la cancion de la cola
     # Consultas
     
     def obtenerTiempoReproducido(self)->int: return self.__tiempoReproducido
@@ -130,16 +159,26 @@ class SuscripcionPaga(Suscripcion):
         self.__MaxDispositivos = pais.obtenerCantidadDispositivos()
     # Comandos
     
-    def reproducirMusica(self):
-        pass
-    
+    def reproducirMusica(self,cancion:'Cancion'):
+        cancion.reproducir()
+        
+    def reproducirPlaylist(self, playlist:'Playlist',aleatorio:bool=False):
+        if not isinstance(playlist,Playlist):
+            raise ValueError("No es una playlist valida")
+        if playlist not in self._playlists:
+            raise ValueError("No es el duenio de la playlist")
+        
+        if aleatorio:
+            cola = playlist.obtenerCopia()
+            for _ in range(len(playlist.obtenerCanciones())):
+                cancion = random.choice(cola) # Elegimos una cancion al azar
+                self.reproducirMusica(cancion) # Reproducimos la cancion
+                cola.remove(cancion) # Eliminamos la cancion de la cola
+        else:
+            for cancion in playlist.obtenerCanciones():
+                self.reproducirMusica(cancion)
+        
     def descargarMusica(self):
-        pass
-    
-    def elegirCancion(self):
-        pass
-    
-    def habilitarDispositivo(self):
         pass
     
     def agregarDispositivo(self, dispositivo):
@@ -237,6 +276,7 @@ class Playlist:
     
     def obtenerDuenio(self)->'Suscripcion': return self.__duenio
     
+    def obtenerCopia(self)->list['Cancion']: return self.__canciones.copy()
     
     
 class Cancion:
@@ -273,7 +313,7 @@ class Cancion:
         self.__genero = genero
         
     def reproducir(self):
-        pass
+        print(f"Reproduciendo: {self.__nombre} {self.__duracion}:00")
     
     # Consultas
     
@@ -340,8 +380,25 @@ class Tester:
         suscripcion2.agregarDispositivo(dispositivo3)
         print(f"Dispositivos suscriptor 1: {suscripcion1.obtenerDispositivos()}")
         print(f"Dispositivos suscriptor 2: {suscripcion2.obtenerDispositivos()}")
-                    
+                
+        print("Suscripctor 1: ",end="")                    
+        suscripcion1.reproducirMusica(cancion1)
+        suscripcion1.reproducirMusica(cancion2)
+        suscripcion1.reproducirMusica(cancion3)
+        suscripcion1.reproducirMusica(cancion4)
+        suscripcion1.reproducirMusica(cancion5)
+
+        playlist3 = suscripcion2.crearPlaylist("Rock Internacional")
+        suscripcion2.agregarCancion(playlist3,cancion1)
+        suscripcion2.agregarCancion(playlist3,cancion6)
+        suscripcion2.agregarCancion(playlist3,cancion7)
+        suscripcion2.agregarCancion(playlist3,cancion8)
+        suscripcion2.agregarCancion(playlist3,cancion9)
         
-            
+        print("suscriptor 2 reproduce playlist en aleatorio: ")
+        suscripcion2.reproducirPlaylist(playlist3,aleatorio=True)
+        
+        print("suscriptor 1 reproduce playlist (obligatoriamente en aleatorio): ")
+        suscripcion1.reproducirPlaylist(playlist1)
 if __name__ == '__main__':
     Tester.run()

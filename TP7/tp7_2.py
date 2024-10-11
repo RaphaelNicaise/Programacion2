@@ -53,9 +53,12 @@ class Inmbueble(ABC):
     @abstractmethod
     def costoAlquiler(self,base: int)->float:
         pass
+    
     @abstractmethod
     def precioVenta(self,m2:float)->float:
         pass
+    
+    
 class Departamento(Inmbueble):
     def __init__(self,codigo:int,domicilio:str,propietario: 'Propietario',metrosCuadrados:int,estado:int,gastosComunes:float,cochera:bool):
         
