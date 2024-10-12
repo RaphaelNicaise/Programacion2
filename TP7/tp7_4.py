@@ -129,6 +129,7 @@ class SuscripcionGratis(Suscripcion):
 
     def interruimpirConPublicidad(self):
         print("Reproduciendo publicidad")
+        self.__tiempoReproducido = 0
     
     def agregarDispositivo(self, dispositivo):
         if not isinstance(dispositivo,Dispositivo):
@@ -400,5 +401,7 @@ class Tester:
         
         print("suscriptor 1 reproduce playlist (obligatoriamente en aleatorio): ")
         suscripcion1.reproducirPlaylist(playlist1)
+        
+        sub4 = Suscripcion("pepe","pepe","tel",pais1)
 if __name__ == '__main__':
     Tester.run()
