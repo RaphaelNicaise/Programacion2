@@ -16,7 +16,7 @@ class Aseguradora:
     
     # Consultas
     
-    def obtenerSeguros(self):
+    def obtenerSeguros(self)->list:
         return self.__seguros
     
     def existePoliza(self,poliza: 'PolizaInmueble')->bool:

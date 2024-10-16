@@ -68,7 +68,14 @@ class Vehiculo(ABC):
         if combustible not in Vehiculo.TIPOS:
             raise ValueError("Combustible debe ser nafta, diésel o eléctrico")
         self._combustible = combustible
-        
+    
+    def kilometraje(self, kilometraje:int):
+        if not isinstance(kilometraje,int):
+            raise ValueError("Kilometraje debe ser un entero")
+        # No se puede bajar el kilometraje
+        if kilometraje < self._kilometraje:
+            raise ValueError("No se puede bajar el kilometraje")
+        self._kilometraje = kilometraje
     
     # Consultas
     

@@ -6,7 +6,9 @@ class Propietario:
         self.__telefono = telefono
         self.__edad = edad
         
-class Inmbueble(ABC):
+    def __repr__(self):
+        return self.__nombre
+class Inmueble(ABC):
     def __init__(self,codigo:int,domicilio:str,propietario: 'Propietario',metrosCuadrados:int,estado:int):
         if not isinstance(codigo,int) or codigo < 1: raise ValueError
         if not isinstance(domicilio,str): raise ValueError
@@ -20,6 +22,11 @@ class Inmbueble(ABC):
         self._metrosCuadrados = metrosCuadrados
         self._estado = estado
         
+    def __str__(self):
+        return f'{self._codigo} - {self._domicilio} - {self._propietario} - {self._metrosCuadrados} - {self._estado}'    
+
+    def __repr__(self):
+        return str(self._codigo)
     # Comandos
     
     def establecerDomicilio(self,domicilioNuevo:str):
@@ -59,10 +66,10 @@ class Inmbueble(ABC):
         pass
     
     
-class Departamento(Inmbueble):
+class Departamento(Inmueble):
     def __init__(self,codigo:int,domicilio:str,propietario: 'Propietario',metrosCuadrados:int,estado:int,gastosComunes:float,cochera:bool):
         
-        if not isinstance(gastosComunes,[float,int]) or gastosComunes < 0: raise ValueError
+        if not isinstance(gastosComunes,float | int) or gastosComunes < 0: raise ValueError
         if not isinstance(cochera,bool): raise ValueError
         
         super().__init__(codigo,domicilio,propietario,metrosCuadrados,estado)
@@ -72,23 +79,26 @@ class Departamento(Inmbueble):
     # Comandos
     
     def establecerGastosComunes(self,gastos:float):
-        if not isinstance(gastos,[float,int]) or gastos < 0: raise ValueError
+        if not isinstance(gastos,float | int) or gastos < 0: raise ValueError
         self.__gastosComunes = gastos
     
     def establecerCochera(self,cochera:bool):
         if not isinstance(cochera,bool): raise ValueError
         self.__cochera = cochera
         
-    # Consultas   
+    # Consultas
+    def obtenerCochera(self)->bool: return self.__cochera
+    def obtenerGastosComunes(self)->float: return self.__gastosComunes
+    
     def costoAlquiler(self,base: int)->float:
-        # No entiendo como sacar el costo
-        return base + self.__gastosComunes * self.obtenerMetrosCuadrados()
+        
+        return (base + self.__gastosComunes * self.obtenerMetrosCuadrados())* (1.3 if self.__cochera else 1)
     
     def precioVenta(self,m2:float)->float:
-        # No entiendo
-        return m2 * self.obtenerMetrosCuadrados() * m2
+        
+        return m2 * self.obtenerEstado() + self.__gastosComunes * (1.5 if self.__cochera else 1) 
     
-class Quinta(Inmbueble):
+class Quinta(Inmueble):
     def __init__(self,codigo:int,domicilio:str,propietario: 'Propietario',metrosCuadrados:int,estado:int,metrosParque:int):
         if not isinstance(metrosParque,int) or metrosParque < 1: raise ValueError
         super().__init__(codigo,domicilio,propietario,metrosCuadrados,estado)
@@ -105,12 +115,12 @@ class Quinta(Inmbueble):
     def obtenerMetrosParque(self)->int: return self.__metrosParque
     
     def costoAlquiler(self,base: int)->float:
-        # No entiendo como sacar el costo
-        pass
+        
+        return base + self.obtenerMetrosParque() * 10
     
     def precioVenta(self,m2:float)->float:
-        # No entiendo
-        pass
+        
+        return m2 * self.obtenerEstado() + self.obtenerMetrosParque() * 20
        
 class Tester:
     @staticmethod

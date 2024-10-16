@@ -23,7 +23,7 @@ class Empleado(ABC):
         self._nombre = nombreNuevo
         
     def setApellido(self,apellidoNuevo):
-        if not isinstance(apellidoNuevo,str):
+        if not isinstance(apellidoNuevo,str) or apellidoNuevo == "" or apellidoNuevo.isspace():
             raise ValueError("Error al ingresar el apellido")
         self._apellido = apellidoNuevo
     
@@ -118,6 +118,10 @@ class EmpleadoAComision(Empleado):
         return EmpleadoAComision.__EMPLEADOS_A_COMISION
     
 class EmpleadoSalarioFijo(Empleado):
+    
+    PORC_ADICIONAL_DE_2_A_5 = 0.05
+    PORC_ADICIONAL_5_A_MAS = 0.10
+    
     def __init__(self,dni:str,nombre:str,apellido:str,fechaIngreso:'Fecha',salarioFijo:float):
         if not isinstance(float(salarioFijo),float) or salarioFijo < 0:
             raise ValueError("Error al ingresar el salario fijo")
@@ -149,9 +153,9 @@ class EmpleadoSalarioFijo(Empleado):
         if años < 2:
             return self.__salarioFijo
         elif 2 <= años <= 5:
-            return self.__salarioFijo + self.__salarioFijo*0.05
+            return self.__salarioFijo + self.__salarioFijo*EmpleadoSalarioFijo.PORC_ADICIONAL_DE_2_A_5
         else:
-            return self.__salarioFijo + self.__salarioFijo*0.10
+            return self.__salarioFijo + self.__salarioFijo*EmpleadoSalarioFijo.PORC_ADICIONAL_5_A_MAS
         
 class Tester:
     @staticmethod
