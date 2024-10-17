@@ -192,8 +192,7 @@ class tester:
         
         print(participante_1)
         print(participante_1.obtenerDisciplinas())
-        participante_1.agregarDisciplina(futbol)
-        participante_1.agregarDisciplina(rugby)
+        
         print(participante_1.obtenerDisciplinas())
         print(futbol.obtenerParticipantes())
         
@@ -205,5 +204,10 @@ class tester:
         print(participante_2.obtenerDisciplinas())
         print(futbol.obtenerParticipantes()[0])
         
+        participante_1.agregarDisciplina(futbol)
+        participante_1.agregarDisciplina(rugby)
+        participante_1.agregarDisciplina(basket)
+        
+        print(participante_1.obtenerDisciplinas())
 if __name__ == "__main__":
     tester.run()

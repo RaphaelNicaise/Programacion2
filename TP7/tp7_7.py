@@ -95,7 +95,7 @@ class EmpleadoAComision(Empleado):
         
     def quitarEmpleado(self):
         self.__EMPLEADOS_A_COMISION.remove(self)
-    
+        del self # Elimina la instancia del objeto
     # Consultas
     
     def getSalarioMinimo(self):
