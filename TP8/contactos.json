@@ -1,0 +1,44 @@
+[
+    {
+        "nombre": "Juan",
+        "apellido": "Perez",
+        "telefono": "123456",
+        "correo": "juanperez@gmail.com",
+        "direccion": "Calle 123"
+    },
+    {
+        "nombre": "Ana",
+        "apellido": "Gomez",
+        "telefono": "654321",
+        "correo": "anagomez@gmail.com",
+        "direccion": "Avenida 456"
+    },
+    {
+        "nombre": "Luis",
+        "apellido": "Martinez",
+        "telefono": "789012",
+        "correo": "luismartinez@gmail.com",
+        "direccion": "Boulevard 789"
+    },
+    {
+        "nombre": "Maria",
+        "apellido": "Lopez",
+        "telefono": "345678",
+        "correo": "marialopez@gmail.com",
+        "direccion": "Plaza 101"
+    },
+    {
+        "nombre": "Carlos",
+        "apellido": "Garcia",
+        "telefono": "901234",
+        "correo": "carlosgarcia@gmail.com",
+        "direccion": "Callejon 202"
+    },
+    {
+        "nombre": "Laura",
+        "apellido": "Fernandez",
+        "telefono": "567890",
+        "correo": "laurafernandez@gmail.com",
+        "direccion": "Pasaje 303"
+    }
+]

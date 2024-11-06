@@ -1,0 +1,6 @@
+[
+    {"titulo": "El señor de los anillos", "autor": "J.R.R. Tolkien", "genero": "Fantasia", "año_publicacion": 1954, "isbn": 9788445073801},
+    {"titulo": "Harry Potter y la piedra filosofal", "autor": "J.K. Rowling", "genero": "Fantasia", "año_publicacion": 1997, "isbn": 9788478884453},
+    {"titulo": "Cien años de soledad", "autor": "Gabriel García Márquez", "genero": "Realismo mágico", "año_publicacion": 1967, "isbn": 9788420471839},
+    {"titulo": "El principito", "autor": "Antoine de Saint-Exupéry", "genero": "Literatura infantil", "año_publicacion": 1943, "isbn": 9788424918117}  
+]
