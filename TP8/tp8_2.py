@@ -35,6 +35,9 @@ class Contacto:
     def __str__(self):
         pass
     
+    def __repr__(self):
+        return f"({self.__nombre} {self.__apellido}, {self.__telefono})"
+    
     @property
     def nombre(self): return self.__nombre
     
@@ -94,18 +97,21 @@ class Tester:
         except ValueError as e:
             print(e)
         
-        c2 = Contacto("Ana","Gomez","654321","anagomez@gmail.com","Avenida 456")
-        c3 = Contacto("Luis","Martinez","789012","luismartinez@gmail.com","Boulevard 789")
-        c4 = Contacto("Maria","Lopez","345678","marialopez@gmail.com","Plaza 101")
-        c5 = Contacto("Carlos","Garcia","901234","carlosgarcia@gmail.com","Callejon 202")
-        c6 = Contacto("Laura","Fernandez","567890","laurafernandez@gmail.com","Pasaje 303")
         
-        lista_contactos = [c1,c2,c3,c4,c5,c6]
+        lista_contactos:list = []
         
-        for contacto in lista_contactos:
-            print(contacto.to_json())       
+        # leer de un archivo json
+        with open("contactos.json","r",encoding="utf-8") as json_file:
+            data = json.load(json_file) 
         
+            for contacto in data:
+                contacto = Contacto.from_json(contacto)
+                lista_contactos.append(contacto)    
+            json_file.close()
         
+        print(lista_contactos)
+        
+        # escribir en un archivo json
         with open("contactos.json","w",encoding="utf-8") as json_file:
            json.dump([contacto.to_json() for contacto in lista_contactos],json_file,indent=4)
 

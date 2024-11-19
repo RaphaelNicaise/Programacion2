@@ -1,4 +1,5 @@
 # todos los pycache en las carpetas de este directorio
 __pycache__/
 Parciales
-
+*/venv
+*/__pycache__
