@@ -1,0 +1,86 @@
+[
+    {
+        "titulo": "El Quijote",
+        "autor": "Miguel de Cervantes",
+        "genero": "Novela",
+        "anio": 1605,
+        "isbn": "9783161484100"
+    },
+    {
+        "titulo": "Cien a\u00c3\u00b1os de soledad",
+        "autor": "Gabriel Garc\u00c3\u00ada M\u00c3\u00a1rquez",
+        "genero": "Realismo m\u00c3\u00a1gico",
+        "anio": 1967,
+        "isbn": "9780743273565"
+    },
+    {
+        "titulo": "1984",
+        "autor": "George Orwell",
+        "genero": "Distop\u00c3\u00ada",
+        "anio": 1949,
+        "isbn": "9780452284234"
+    },
+    {
+        "titulo": "El amor en los tiempos del c\u00c3\u00b3lera",
+        "autor": "Gabriel Garc\u00c3\u00ada M\u00c3\u00a1rquez",
+        "genero": "Novela",
+        "anio": 1985,
+        "isbn": "9780743273558"
+    },
+    {
+        "titulo": "Orgullo y prejuicio",
+        "autor": "Jane Austen",
+        "genero": "Romance",
+        "anio": 1813,
+        "isbn": "9780140283334"
+    },
+    {
+        "titulo": "Cr\u00c3\u00b3nica de una muerte anunciada",
+        "autor": "Gabriel Garc\u00c3\u00ada M\u00c3\u00a1rquez",
+        "genero": "Novela",
+        "anio": 1981,
+        "isbn": "9780743273541"
+    },
+    {
+        "titulo": "Rebeli\u00c3\u00b3n en la granja",
+        "autor": "George Orwell",
+        "genero": "Satira",
+        "anio": 1945,
+        "isbn": "9780452284241"
+    },
+    {
+        "titulo": "Matar a un ruise\u00c3\u00b1or",
+        "autor": "Harper Lee",
+        "genero": "Novela",
+        "anio": 1960,
+        "isbn": "9780140283341"
+    },
+    {
+        "titulo": "Fahrenheit 451",
+        "autor": "Ray Bradbury",
+        "genero": "Ciencia ficci\u00c3\u00b3n",
+        "anio": 1953,
+        "isbn": "9780452284258"
+    },
+    {
+        "titulo": "El coronel no tiene quien le escriba",
+        "autor": "Gabriel Garc\u00c3\u00ada M\u00c3\u00a1rquez",
+        "genero": "Novela",
+        "anio": 1961,
+        "isbn": "9780743273534"
+    },
+    {
+        "titulo": "Las aventurar del sr papafrita",
+        "autor": "Raphael Nicaise",
+        "genero": "Drama",
+        "anio": 2023,
+        "isbn": "2345372343462"
+    },
+    {
+        "titulo": "Las aventurinhas del sr Papafritinha",
+        "autor": "Rafinha",
+        "genero": "Dramasinho",
+        "anio": 2023,
+        "isbn": "1213122322313"
+    }
+]
