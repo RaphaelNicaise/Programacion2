@@ -1,0 +1,98 @@
+[
+    {
+        "titulo": "El Quijote",
+        "autor": "Miguel de Cervantes",
+        "genero": "Novela",
+        "anio": 1605,
+        "ISBN": "9783161484100",
+        "ejemplares": 3
+    },
+    {
+        "titulo": "Cien años de soledad",
+        "autor": "Gabriel García Márquez",
+        "genero": "Realismo mágico",
+        "anio": 1967,
+        "ISBN": "9780743273565",
+        "ejemplares": 8
+    },
+    {
+        "titulo": "1984",
+        "autor": "George Orwell",
+        "genero": "Distopía",
+        "anio": 1949,
+        "ISBN": "9780452284234",
+        "ejemplares": 2
+    },
+    {
+        "titulo": "El amor en los tiempos del cólera",
+        "autor": "Gabriel García Márquez",
+        "genero": "Novela",
+        "anio": 1985,
+        "ISBN": "9780743273558",
+        "ejemplares": 3
+    },
+    {
+        "titulo": "Orgullo y prejuicio",
+        "autor": "Jane Austen",
+        "genero": "Romance",
+        "anio": 1813,
+        "ISBN": "9780140283334",
+        "ejemplares": 7
+    },
+    {
+        "titulo": "Crónica de una muerte anunciada",
+        "autor": "Gabriel García Márquez",
+        "genero": "Novela",
+        "anio": 1981,
+        "ISBN": "9780743273541",
+        "ejemplares": 2
+    },
+    {
+        "titulo": "Rebelión en la granja",
+        "autor": "George Orwell",
+        "genero": "Satira",
+        "anio": 1945,
+        "ISBN": "9780452284241",
+        "ejemplares": 6
+    },
+    {
+        "titulo": "Matar a un ruiseñor",
+        "autor": "Harper Lee",
+        "genero": "Novela",
+        "anio": 1960,
+        "ISBN": "9780140283341",
+        "ejemplares": 5
+    },
+    {
+        "titulo": "Fahrenheit 451",
+        "autor": "Ray Bradbury",
+        "genero": "Ciencia ficción",
+        "anio": 1953,
+        "ISBN": "9780452284258",
+        "ejemplares": 3
+    },
+    {
+        "titulo": "El coronel no tiene quien le escriba",
+        "autor": "Gabriel García Márquez",
+        "genero": "Novela",
+        "anio": 1961,
+        "ISBN": "9780743273534",
+        "ejemplares": 2
+    },
+    {
+        "titulo": "Las aventurar del sr papafrita",
+        "autor": "Raphael Nicaise",
+        "genero": "Drama",
+        "anio": 2023,
+        "ISBN": "2345372343462",
+        "ejemplares": 4
+    },
+    {
+        "titulo": "Las aventurinhas del sr Papafritinha",
+        "autor": "Rafinha",
+        "genero": "Dramasinho",
+        "anio": 2023,
+        "ISBN": "1213122322313",
+        "ejemplares": 6
+    }
+]
