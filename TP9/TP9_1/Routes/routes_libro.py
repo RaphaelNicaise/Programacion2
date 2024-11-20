@@ -6,7 +6,6 @@ repo_libro = getRepoLibro()
 
 libros_bp = Blueprint('libros_bp', __name__)
 
-
 # Ruta para obtener todos las libros
 @libros_bp.route('/libros', methods=['GET'])
 def getLibros():
